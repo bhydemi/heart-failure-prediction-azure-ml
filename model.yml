@@ -1,0 +1,11 @@
+$schema: https://azuremlschemas.azureedge.net/latest/model.schema.json
+name: heart-failure-model
+path: azureml://jobs/brave_wheel_wx5b2k87n3_12/outputs/artifacts/paths/outputs/model.joblib
+description: Heart Failure Prediction Model - Logistic Regression trained with HyperDrive
+type: custom_model
+tags:
+  accuracy: "0.85"
+  algorithm: "LogisticRegression"
+  C: "1.168"
+  max_iter: "200"
+  solver: "lbfgs"

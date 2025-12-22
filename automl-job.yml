@@ -1,0 +1,31 @@
+$schema: https://azuremlschemas.azureedge.net/latest/autoMLJob.schema.json
+type: automl
+
+experiment_name: heart-failure-automl
+description: AutoML classification for heart failure prediction
+
+compute: azureml:cpu-cluster
+
+task: classification
+primary_metric: accuracy
+
+target_column_name: DEATH_EVENT
+
+training_data:
+  path: azureml:heart-failure-dataset:1
+  type: mltable
+
+limits:
+  timeout_minutes: 30
+  trial_timeout_minutes: 10
+  max_trials: 20
+  max_concurrent_trials: 4
+  enable_early_termination: true
+
+training:
+  enable_onnx_compatible_models: true
+
+featurization:
+  mode: auto
+
+n_cross_validations: 5

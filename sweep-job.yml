@@ -1,0 +1,47 @@
+$schema: https://azuremlschemas.azureedge.net/latest/sweepJob.schema.json
+type: sweep
+
+experiment_name: heart-failure-hyperdrive
+description: HyperDrive hyperparameter tuning for heart failure prediction
+
+compute: azureml:cpu-cluster
+
+sampling_algorithm: random
+
+search_space:
+  C:
+    type: loguniform
+    min_value: -3
+    max_value: 2
+  max_iter:
+    type: choice
+    values: [50, 100, 150, 200, 300]
+  solver:
+    type: choice
+    values: ["lbfgs", "liblinear", "saga"]
+
+objective:
+  goal: maximize
+  primary_metric: Accuracy
+
+limits:
+  max_total_trials: 20
+  max_concurrent_trials: 4
+  timeout: 1800
+
+early_termination:
+  type: bandit
+  slack_factor: 0.1
+  evaluation_interval: 2
+  delay_evaluation: 5
+
+trial:
+  command: >-
+    python train.py
+    --C ${{search_space.C}}
+    --max_iter ${{search_space.max_iter}}
+    --solver ${{search_space.solver}}
+  code: .
+  environment:
+    image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+    conda_file: conda_env.yml

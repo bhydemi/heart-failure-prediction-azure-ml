@@ -1,0 +1,10 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: heart-failure-deploy-v2
+endpoint_name: heart-failure-endpoint
+model: azureml:heart-failure-model:1
+code_configuration:
+  code: ./inference_code
+  scoring_script: main.py
+environment: azureml:heart-failure-inference-env:1
+instance_type: Standard_F2s_v2
+instance_count: 1

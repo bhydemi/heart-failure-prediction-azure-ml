@@ -1,0 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: heart-failure-dataset
+description: Heart Failure Clinical Records Dataset from Kaggle
+type: mltable
+path: ./heart-failure-data
