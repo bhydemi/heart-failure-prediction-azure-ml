@@ -483,11 +483,8 @@ az ml online-deployment create --file deployment.yml --all-traffic
 - Python 3.9+
 - Required packages (see `conda_env.yml`)
 
-## License
-
-This project is for educational purposes as part of the Udacity Azure ML Nanodegree.
 
 ## Acknowledgments
 
 - Dataset: [Heart Failure Clinical Records](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data)
-- Udacity Machine Learning Engineer with Microsoft Azure Nanodegree
+
